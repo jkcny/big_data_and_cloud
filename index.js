@@ -15,15 +15,6 @@ answer.appendChild(linebreak);
 answer.appendChild(btn);
 
 
-// calling API
-// const url = 'https://o8pgxlcmgd.execute-api.us-east-1.amazonaws.com/dev2/chat';
-// fetch(url, {header: {
-//     'Access-Control-Allow-Origin':'http://localhost:3000',
-//   }}).then(response => {
-//     return response.json()
-// }).then(data => {
-//     let out = data.body;
-// })
 
 var apigClient = apigClientFactory.newClient();
 var params = {};
