@@ -7,9 +7,10 @@ btn.name = 'formBtn';
 const answer = document.getElementById('answer');
 const botoutput = document.createElement('textarea');
 const linebreak = document.createElement('br');
-botoutput.name = 'answer';
-botoutput.cols = 30;
-botoutput.rows = 10;
+botoutput.name = 'outputanswer';
+botoutput.cols = 60;
+botoutput.rows = 30;
+botoutput.id = 'outputanswer'
 answer.appendChild(botoutput);
 answer.appendChild(linebreak);
 answer.appendChild(btn);
@@ -17,7 +18,6 @@ answer.appendChild(btn);
 
 
 var apigClient = apigClientFactory.newClient();
-var params = {};
 var body = {
     // This is where you define the body of the request,
   };
@@ -26,15 +26,18 @@ var additionalParams = {
     //   sent with the request, add them here.
   };
 
-apigClient.answersGet(params, body, additionalParams)
-  .then(function(result){
-    // Add success callback code here.
-    reply = result.data.body;
-})
 
 btn.onclick = function() {
     // alert('Button is clicked');
-    botoutput.value = reply;
+    var inputtext = botoutput.value;
+    var params = {'q': inputtext};
+    apigClient.answersGet(params, body, additionalParams)
+        .then(function(result){
+        // Add success callback code here.
+        reply = result.data;
+        botoutput.value = reply;
+    })
+
 }
 
 
