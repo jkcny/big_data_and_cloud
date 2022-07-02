@@ -67,8 +67,13 @@ btn.onclick = function() {
         .then(function(result){
         // Add success callback code here.
         reply = result.data;
-        answertext = reply.join('\n\n');
-        botoutput.value = answertext;
+        if (reply.length == 0) {
+            botoutput.value = "no answers found for this category";
+        } else {
+            answertext = reply.join('\n\n');
+            botoutput.value = answertext;
+        }
+        
     })
 
 }
